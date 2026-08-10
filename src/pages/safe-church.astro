@@ -11,6 +11,8 @@ if (!page) {
 }
 
 const bodyHtml = await markdocToHtml(page.body);
+const policyPdfHref = page.policyPdf ? `/documents/${page.policyPdf}` : null;
+const procedurePdfHref = page.procedurePdf ? `/documents/${page.procedurePdf}` : null;
 ---
 
 <SiteShell title={page.pageTitle} description="Safe Church and Child Safe policies at Wandin Baptist Church.">
@@ -22,16 +24,29 @@ const bodyHtml = await markdocToHtml(page.body);
         <li>
           <a class="btn-outline" href="/child-safe-policy">Child Safe Policy</a>
         </li>
-        <li>
-          <a class="btn-outline" href={page.policyPdfHref} target="_blank" rel="noopener noreferrer">
-            {page.policyPdfLabel}
-          </a>
-        </li>
-        <li>
-          <a class="btn-outline" href={page.procedurePdfHref} target="_blank" rel="noopener noreferrer">
-            {page.procedurePdfLabel}
-          </a>
-        </li>
+        {
+          policyPdfHref && (
+            <li>
+              <a class="btn-outline" href={policyPdfHref} target="_blank" rel="noopener noreferrer">
+                {page.policyPdfLabel}
+              </a>
+            </li>
+          )
+        }
+        {
+          procedurePdfHref && (
+            <li>
+              <a
+                class="btn-outline"
+                href={procedurePdfHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {page.procedurePdfLabel}
+              </a>
+            </li>
+          )
+        }
       </ul>
     </div>
   </section>

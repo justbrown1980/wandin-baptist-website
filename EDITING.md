@@ -77,7 +77,7 @@ Use these for whole pages or global settings:
 | **Home Page** | Homepage hero, welcome text, gallery photos |
 | **Meet the Pastor** | Pastor page |
 | **Contact Page** | Contact page intro text |
-| **Safe Church** | Safe Church hub page + PDF link labels/paths |
+| **Safe Church** | Safe Church hub page + PDF uploads |
 | **Child Safe Policy** | Full child safe policy page |
 | **Privacy Policy** | Privacy page |
 
@@ -202,19 +202,21 @@ Phone, email, postal address, and maps come from **Site Settings**, not from thi
 | Page title | Banner title |
 | Body | Main explanation text |
 | Policy PDF label | Link text for the policy PDF |
-| Policy PDF path | URL path to the file (usually starts with `/`) |
+| Policy PDF | Upload / replace the policy PDF file |
 | Procedure PDF label | Link text for the procedures PDF |
-| Procedure PDF path | URL path to the file |
+| Procedure PDF | Upload / replace the procedures PDF file |
 
 There is also a fixed link on this page to the **Child Safe Policy** web page (`/child-safe-policy`).
 
 #### Updating a PDF
 
-1. Replace the PDF file in the project `public/` folder (a developer may need to do this), **or** upload via your normal GitHub/Vercel workflow.
-2. Keep the filename the same if possible, so old links still work.
-3. If the filename changes, update **Policy PDF path** / **Procedure PDF path** in Keystatic to match, for example:
+1. Open **Safe Church** in Keystatic.
+2. Find **Policy PDF** or **Procedure PDF**.
+3. Upload the new PDF (this replaces the previous file).
+4. Optionally update the **label** if the year or title changed.
+5. Save — after deploy, the Safe Church page links to the new file.
 
-   `/2020 Wandin Baptist Safe Church And Child Safe Policy with logo.pdf`
+You do **not** need to edit filenames or paths. Old bookmarked URLs with long names still redirect to the current PDFs.
 
 ---
 
@@ -347,7 +349,7 @@ Used on Home, Pastor, and Site Settings (logo).
 - Use clear, well-lit photos of the church, people, or ministries.
 - Prefer landscape photos for the hero/banner.
 - Keep files reasonably small (about **under 1–2 MB** when possible) so pages load quickly.
-- Do not upload private or sensitive documents as “images”.
+- Do not upload private or sensitive documents as “images”. Use the **Safe Church** PDF fields for policy PDFs.
 
 ---
 
@@ -387,6 +389,7 @@ Longer fields (intro, bio, bodies, descriptions) support simple formatting, such
 | Add a history timeline entry | **History Events** |
 | Fix a belief statement | **Beliefs** |
 | Update Safe Church wording | **Safe Church** |
+| Replace Safe Church PDFs | **Safe Church** → Policy PDF / Procedure PDF |
 | Update Child Safe Policy text | **Child Safe Policy** |
 | Update Privacy Policy | **Privacy Policy** |
 
@@ -414,7 +417,7 @@ If you need one of these, ask the site maintainer.
 | “I can view but not save” | You likely have Read-only access. Ask an admin for Write. |
 | Saved, but website looks the same | Wait a few minutes for Vercel. Hard-refresh or use an incognito window. |
 | Image missing / broken | Re-upload in Keystatic and Save again. Confirm the image field is not empty. |
-| PDF link 404 | Check Safe Church PDF path matches the real filename in `public/`. |
+| PDF link 404 | Re-upload the PDF under **Safe Church** and Save again. Wait for deploy. |
 | Formatting looks odd | Simplify the rich text; remove fancy pasted styles. |
 | I made a mistake | Ask a maintainer to revert the latest GitHub commit, or restore an earlier version of that content file. |
 | Two people editing at once | Avoid this. Last save can overwrite the other person’s work. Coordinate edits. |

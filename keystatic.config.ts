@@ -110,9 +110,19 @@ export default config({
       schema: {
         pageTitle: fields.text({ label: 'Page title' }),
         policyPdfLabel: fields.text({ label: 'Policy PDF label' }),
-        policyPdfHref: fields.text({ label: 'Policy PDF path' }),
+        policyPdf: fields.file({
+          label: 'Policy PDF',
+          description: 'Upload or replace the Safe Church and Child Safe Policy PDF.',
+          directory: 'public/documents',
+          publicPath: '/documents/',
+        }),
         procedurePdfLabel: fields.text({ label: 'Procedure PDF label' }),
-        procedurePdfHref: fields.text({ label: 'Procedure PDF path' }),
+        procedurePdf: fields.file({
+          label: 'Procedure PDF',
+          description: 'Upload or replace the Safe Church and Child Safe Procedures PDF.',
+          directory: 'public/documents',
+          publicPath: '/documents/',
+        }),
         body: fields.markdoc({ label: 'Body' }),
       },
     }),

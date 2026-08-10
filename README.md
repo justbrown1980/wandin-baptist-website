@@ -55,7 +55,7 @@ Legacy `*.html` URLs redirect to clean paths via `vercel.json`.
 
 - [ ] All routes render: `/`, `/our-beliefs`, `/wandin-baptist-history`, `/meet-the-pastor`, `/contact-us`, `/safe-church`, `/child-safe-policy`, `/privacy`
 - [ ] Ministries page renders at `/ministries`
-- [ ] PDFs open from Safe Church links
+- [ ] PDFs open from Safe Church links (`/documents/…`) and legacy PDF URLs redirect
 - [ ] Giving, YouTube, Maps, and OAIC privacy links work
 - [ ] Contact email shows `wandinbaptist@gmail.com` (no obfuscation script)
 - [ ] Google verification file present: `/google1aad7b13f9170355.html`

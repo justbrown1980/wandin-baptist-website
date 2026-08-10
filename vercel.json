@@ -7,6 +7,16 @@
     { "source": "/contact-us.html", "destination": "/contact-us", "permanent": true },
     { "source": "/safe-church.html", "destination": "/safe-church", "permanent": true },
     { "source": "/child-safe-policy.html", "destination": "/child-safe-policy", "permanent": true },
-    { "source": "/privacy.html", "destination": "/privacy", "permanent": true }
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    {
+      "source": "/2020 Wandin Baptist Safe Church And Child Safe Policy with logo.pdf",
+      "destination": "/documents/policyPdf.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/2020 Wandin Baptist Safe Church And Child Safe Proceedure with logo.pdf",
+      "destination": "/documents/procedurePdf.pdf",
+      "permanent": true
+    }
   ]
 }
