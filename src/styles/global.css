@@ -119,7 +119,7 @@
   }
 
   .section-shell {
-    @apply mx-auto w-full max-w-5xl px-5 md:px-8;
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8;
   }
 
   .page-banner {
