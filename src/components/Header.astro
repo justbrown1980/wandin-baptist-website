@@ -13,21 +13,22 @@ const { churchName, logo, givewayUrl, currentPath = '/' } = Astro.props;
 
 <header class="sticky top-0 z-50 border-b border-eucalyptus-900/10 bg-mist-50/90 backdrop-blur-md">
   <div class="section-shell flex items-center justify-between gap-4 py-3 md:py-4">
-    <a href="/" class="flex items-center gap-3 shrink-0">
+    <a href="/" class="shrink-0" aria-label={churchName}>
       {
-        logo && (
+        logo ? (
           <img
             src={logo}
-            alt=""
+            alt={churchName}
             class="h-12 w-auto md:h-14"
             width="56"
             height="56"
           />
+        ) : (
+          <span class="font-display text-lg font-semibold text-eucalyptus-900 md:text-xl">
+            {churchName}
+          </span>
         )
       }
-      <span class="font-display text-lg font-semibold leading-tight text-eucalyptus-900 md:text-xl">
-        {churchName}
-      </span>
     </a>
 
     <button
