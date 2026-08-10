@@ -26,7 +26,7 @@ Editable in Keystatic under `src/content/`:
 | Singleton | Home / Pastor / Contact / Safe Church / Child Safe / Privacy | Page content |
 | Collection | Beliefs | Statement of faith items |
 | Collection | History Events | Timeline entries |
-| Collection | Ministries | Shared ministries section |
+| Collection | Ministries | `/ministries` page + shared section on other pages |
 
 - **Local mode** during `npm run dev` (writes to disk)
 - **GitHub mode** in production on Vercel (commits to the repo)

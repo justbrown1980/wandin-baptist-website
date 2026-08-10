@@ -1,0 +1,24 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import Ministries from '../components/Ministries.astro';
+import { getMinistries } from '../lib/ministries';
+
+const ministries = await getMinistries();
+---
+
+<SiteShell
+  title="Ministries"
+  description="Ways to connect, grow, and serve together at Wandin Baptist Church."
+  showMinistries={false}
+>
+  <PageBanner title="Ministries" />
+  <div class="bg-mist-50 py-10 md:py-12">
+    <div class="content-shell">
+      <p class="text-lg text-ink-700 md:text-xl">
+        Ways to connect, grow, and serve together through the week.
+      </p>
+    </div>
+  </div>
+  <Ministries ministries={ministries} hideHeading />
+</SiteShell>

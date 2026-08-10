@@ -307,7 +307,9 @@ Each entry has:
 
 ### 7.3 Ministries
 
-Shown in the **Ministries** section near the bottom of every page.
+**Public URLs:** `/ministries` and the Ministries section near the bottom of other pages.
+
+Both use the same Keystatic **Ministries** collection — edit once, and both update after deploy.
 
 Each entry has:
 
@@ -324,7 +326,7 @@ Each entry has:
 2. Fill Title, Schedule, Order, Description.
 3. Save.
 
-Because ministries appear site-wide, a change here updates every page after deploy.
+Because ministries are shared, a change here updates `/ministries` and the section on other pages after deploy.
 
 ---
 

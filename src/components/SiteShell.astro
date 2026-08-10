@@ -4,7 +4,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Ministries from './Ministries.astro';
 import { getReader } from '../lib/reader';
-import { markdocToHtml } from '../lib/markdoc';
+import { getMinistries } from '../lib/ministries';
 
 interface Props {
   title: string;
@@ -19,23 +19,7 @@ if (!settings) {
   throw new Error('Site settings content is missing.');
 }
 
-const ministrySlugs = await reader.collections.ministries.list();
-const ministriesRaw = await Promise.all(
-  ministrySlugs.map(async (slug) => {
-    const entry = await reader.collections.ministries.read(slug);
-    if (!entry) return null;
-    return {
-      title: entry.title,
-      schedule: entry.schedule,
-      order: entry.order ?? 0,
-      descriptionHtml: await markdocToHtml(entry.description),
-    };
-  }),
-);
-const ministries = ministriesRaw
-  .filter((item): item is NonNullable<typeof item> => item !== null)
-  .sort((a, b) => a.order - b.order);
-
+const ministries = showMinistries ? await getMinistries() : [];
 const logo = settings.logo ? `/images/${settings.logo}` : null;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
