@@ -20,7 +20,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative isolate min-h-[100svh] overflow-hidden bg-eucalyptus-950 text-white">
+<section class="relative isolate h-[50vh] max-h-[50vh] overflow-hidden bg-eucalyptus-950 text-white">
   {
     image && (
       <img
@@ -34,17 +34,17 @@ const {
   <div class="absolute inset-0 bg-gradient-to-t from-eucalyptus-950 via-eucalyptus-950/70 to-eucalyptus-900/40"></div>
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(201,134,45,0.18),_transparent_40%)]"></div>
 
-  <div class="section-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-32 md:pb-24">
+  <div class="section-shell relative flex h-full flex-col justify-end pb-8 pt-20 md:pb-12">
     <div class="max-w-3xl animate-[fade-up_0.9s_ease-out_both]">
-      <h1 class="font-display text-5xl font-semibold tracking-tight text-balance sm:text-6xl md:text-7xl">
+      <h1 class="font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl">
         {headline}
       </h1>
       {
         subline && (
-          <p class="mt-4 text-xl text-mist-100 md:text-2xl">{subline}</p>
+          <p class="mt-3 text-lg text-mist-100 md:text-xl">{subline}</p>
         )
       }
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="mt-5 flex flex-wrap gap-3">
         {
           primaryCtaLabel && primaryCtaHref && (
             <a href={primaryCtaHref} class="btn-primary">
