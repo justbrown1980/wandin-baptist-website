@@ -1,0 +1,76 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const slugs = await reader.collections.historyEvents.list();
+const events = (
+  await Promise.all(
+    slugs.map(async (slug) => {
+      const entry = await reader.collections.historyEvents.read(slug);
+      if (!entry) return null;
+      return {
+        dateLabel: entry.dateLabel,
+        order: entry.order ?? 0,
+        bodyHtml: await markdocToHtml(entry.body),
+      };
+    }),
+  )
+)
+  .filter((item): item is NonNullable<typeof item> => item !== null)
+  .sort((a, b) => a.order - b.order);
+---
+
+<SiteShell
+  title="History of Wandin Baptist Church"
+  description="Over 100 years of Wandin Baptist Church serving the local community."
+>
+  <PageBanner title="History of Wandin Baptist Church" />
+  <section class="py-14 md:py-16">
+    <div class="section-shell max-w-3xl">
+      <p class="prose-church mb-12">
+        Wandin Baptist Church has been serving the community for over 100 years. Here is a short history of how the church has evolved over the years.
+      </p>
+
+      <ol class="relative space-y-0 border-l border-eucalyptus-700/30 pl-8 md:pl-10">
+        {
+          events.map((event) => (
+            <li class="timeline-item relative pb-10 last:pb-0" data-timeline-item>
+              <span class="absolute -left-[2.15rem] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-amber-500 bg-mist-50 md:-left-[2.65rem]"></span>
+              <time class="font-display text-lg font-semibold text-eucalyptus-800 md:text-xl">
+                {event.dateLabel}
+              </time>
+              <div class="prose-church mt-2" set:html={event.bodyHtml} />
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</SiteShell>
+
+<script>
+  function setupTimeline() {
+    const items = document.querySelectorAll<HTMLElement>('[data-timeline-item]');
+    if (!items.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    items.forEach((item) => observer.observe(item));
+  }
+
+  setupTimeline();
+  document.addEventListener('astro:page-load', setupTimeline);
+</script>

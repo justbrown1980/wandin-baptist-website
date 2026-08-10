@@ -1,0 +1,38 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const page = await reader.singletons.safeChurch.read();
+if (!page) {
+  throw new Error('Safe Church content is missing.');
+}
+
+const bodyHtml = await markdocToHtml(page.body);
+---
+
+<SiteShell title={page.pageTitle} description="Safe Church and Child Safe policies at Wandin Baptist Church.">
+  <PageBanner title={page.pageTitle} />
+  <section class="py-14 md:py-16">
+    <div class="section-shell max-w-3xl">
+      <div class="prose-church" set:html={bodyHtml} />
+      <ul class="mt-8 space-y-3">
+        <li>
+          <a class="btn-outline" href="/child-safe-policy">Child Safe Policy</a>
+        </li>
+        <li>
+          <a class="btn-outline" href={page.policyPdfHref} target="_blank" rel="noopener noreferrer">
+            {page.policyPdfLabel}
+          </a>
+        </li>
+        <li>
+          <a class="btn-outline" href={page.procedurePdfHref} target="_blank" rel="noopener noreferrer">
+            {page.procedurePdfLabel}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</SiteShell>

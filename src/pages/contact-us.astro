@@ -1,0 +1,74 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const [contact, settings] = await Promise.all([
+  reader.singletons.contact.read(),
+  reader.singletons.siteSettings.read(),
+]);
+
+if (!contact || !settings) {
+  throw new Error('Contact or site settings content is missing.');
+}
+
+const introHtml = await markdocToHtml(contact.intro);
+---
+
+<SiteShell title={contact.pageTitle} description="Contact Wandin Baptist Church by phone, email, or post.">
+  <PageBanner title={contact.pageTitle} />
+  <section class="py-14 md:py-16">
+    <div class="section-shell max-w-2xl">
+      <div class="prose-church" set:html={introHtml} />
+
+      <h2 class="mt-10 font-display text-2xl font-semibold text-eucalyptus-900">
+        Ways to contact Wandin Baptist Church
+      </h2>
+
+      <dl class="mt-6 space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-ink-900">Postal address</dt>
+          <dd class="mt-1">{settings.postalAddress}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-ink-900">Call Wandin Baptist Church</dt>
+          <dd class="mt-1">
+            <a class="text-eucalyptus-700 underline decoration-eucalyptus-700/30 underline-offset-2" href={`tel:${settings.phone.replace(/\s/g, '')}`}>
+              {settings.phone}
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-ink-900">Email us</dt>
+          <dd class="mt-1">
+            <a class="text-eucalyptus-700 underline decoration-eucalyptus-700/30 underline-offset-2" href={`mailto:${settings.email}`}>
+              {settings.email}
+            </a>
+          </dd>
+        </div>
+        {
+          settings.mapsUrl && (
+            <div>
+              <dt class="font-semibold text-ink-900">Visit us</dt>
+              <dd class="mt-1">
+                {settings.addressLine1}<br />
+                {settings.addressLine2}<br />
+                {settings.addressLine3}<br />
+                <a
+                  class="mt-2 inline-block text-eucalyptus-700 underline decoration-eucalyptus-700/30 underline-offset-2"
+                  href={settings.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Map directions
+                </a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+  </section>
+</SiteShell>

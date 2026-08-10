@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="page-banner">
+  <div class="section-shell relative">
+    <h1 class="font-display text-4xl font-semibold tracking-tight text-balance md:text-5xl animate-[fade-up_0.7s_ease-out_both]">
+      {title}
+    </h1>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const slugs = await reader.collections.beliefs.list();
+const beliefs = (
+  await Promise.all(
+    slugs.map(async (slug) => {
+      const entry = await reader.collections.beliefs.read(slug);
+      if (!entry) return null;
+      return {
+        title: entry.title,
+        order: entry.order ?? 0,
+        bodyHtml: await markdocToHtml(entry.body),
+      };
+    }),
+  )
+)
+  .filter((item): item is NonNullable<typeof item> => item !== null)
+  .sort((a, b) => a.order - b.order);
+---
+
+<SiteShell title="Our Beliefs" description="What Wandin Baptist Church believes about God, Scripture, salvation, and the church.">
+  <PageBanner title="Our Beliefs" />
+  <section class="py-14 md:py-16">
+    <div class="section-shell max-w-3xl">
+      <ol class="space-y-8">
+        {
+          beliefs.map((belief, index) => (
+            <li class="border-t border-eucalyptus-900/10 pt-8 first:border-0 first:pt-0">
+              <h2 class="font-display text-xl font-semibold text-eucalyptus-900 md:text-2xl">
+                <span class="mr-2 text-amber-600">{String(index + 1).padStart(2, '0')}</span>
+                {belief.title}
+              </h2>
+              <div class="prose-church mt-3" set:html={belief.bodyHtml} />
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</SiteShell>

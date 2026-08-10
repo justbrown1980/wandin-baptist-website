@@ -1,0 +1,66 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import Hero from '../components/Hero.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const [home, settings] = await Promise.all([
+  reader.singletons.home.read(),
+  reader.singletons.siteSettings.read(),
+]);
+
+if (!home || !settings) {
+  throw new Error('Home or site settings content is missing.');
+}
+
+const introHtml = await markdocToHtml(home.intro);
+const heroImage = home.heroImage ? `/images/${home.heroImage}` : null;
+const gallery = [
+  {
+    src: home.galleryImage1 ? `/images/${home.galleryImage1}` : null,
+    alt: home.galleryImage1Alt || '',
+  },
+  {
+    src: home.galleryImage2 ? `/images/${home.galleryImage2}` : null,
+    alt: home.galleryImage2Alt || '',
+  },
+  {
+    src: home.galleryImage3 ? `/images/${home.galleryImage3}` : null,
+    alt: home.galleryImage3Alt || '',
+  },
+].filter((item) => item.src);
+---
+
+<SiteShell title={settings.churchName} description="Welcome to Wandin Baptist Church — a place to learn, grow, serve and get connected.">
+  <Hero
+    headline={home.heroHeadline}
+    subline={home.heroSubline}
+    image={heroImage}
+    primaryCtaLabel={home.primaryCtaLabel}
+    primaryCtaHref={home.primaryCtaHref}
+    youtubeUrl={settings.youtubeUrl}
+    youtubeCtaLabel={home.youtubeCtaLabel}
+  />
+
+  <section class="bg-mist-50 py-16 md:py-20">
+    <div class="section-shell grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
+      <div class="prose-church" set:html={introHtml} />
+      <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+        {
+          gallery.map((image, index) => (
+            <img
+              src={image.src!}
+              alt={image.alt}
+              class:list={[
+                'w-full rounded-sm object-cover shadow-sm',
+                index === 0 ? 'sm:col-span-2 md:col-span-1 aspect-[16/10]' : 'aspect-[4/3]',
+              ]}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</SiteShell>

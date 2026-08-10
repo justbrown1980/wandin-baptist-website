@@ -1,0 +1,83 @@
+---
+import { footerNav } from '../lib/navigation';
+
+interface Props {
+  churchName: string;
+  serviceTime: string;
+  addressLine1: string;
+  addressLine2: string;
+  addressLine3: string;
+  phone: string;
+  mapsUrl?: string | null;
+  copyrightStartYear: number;
+  copyrightEndYear: number;
+}
+
+const {
+  churchName,
+  serviceTime,
+  addressLine1,
+  addressLine2,
+  addressLine3,
+  phone,
+  mapsUrl,
+  copyrightStartYear,
+  copyrightEndYear,
+} = Astro.props;
+---
+
+<footer class="mt-auto bg-eucalyptus-950 text-mist-100">
+  <div class="section-shell grid gap-10 py-14 md:grid-cols-2 md:gap-16">
+    <address class="not-italic">
+      <h2 class="font-display text-2xl font-semibold text-white">{churchName}</h2>
+      <p class="mt-4 leading-relaxed text-mist-200">
+        Services weekly {serviceTime}<br /><br />
+        {addressLine1}<br />
+        {addressLine2}<br />
+        {addressLine3}<br />
+        Ph: <a class="underline decoration-white/30 underline-offset-2 hover:text-white" href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+      </p>
+      {
+        mapsUrl && (
+          <a
+            href={mapsUrl}
+            class="mt-4 inline-block font-medium text-amber-500 underline decoration-amber-500/40 underline-offset-2 hover:text-amber-400"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Map directions
+          </a>
+        )
+      }
+    </address>
+
+    <nav aria-label="Footer">
+      <h2 class="font-display text-lg font-semibold text-white">Quick navigation</h2>
+      <ul class="mt-4 columns-1 gap-x-8 space-y-2 sm:columns-2">
+        {
+          footerNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-mist-200 transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="section-shell flex flex-col gap-2 py-5 text-sm text-mist-200 sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        &copy; {copyrightStartYear} &mdash; {copyrightEndYear} {churchName}
+      </p>
+      <a href="/privacy" class="underline decoration-white/25 underline-offset-2 hover:text-white">
+        Privacy Policy
+      </a>
+    </div>
+  </div>
+</footer>

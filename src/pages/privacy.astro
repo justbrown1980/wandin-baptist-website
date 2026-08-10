@@ -1,0 +1,26 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const page = await reader.singletons.privacy.read();
+if (!page) {
+  throw new Error('Privacy content is missing.');
+}
+
+const bodyHtml = await markdocToHtml(page.body);
+---
+
+<SiteShell title={page.pageTitle} description="Privacy policy for Wandin Baptist Church.">
+  <PageBanner title={page.pageTitle} />
+  <section class="py-14 md:py-16">
+    <div class="section-shell max-w-3xl">
+      <h2 class="font-display text-2xl font-semibold text-eucalyptus-900 md:text-3xl">
+        {page.heading}
+      </h2>
+      <div class="prose-church mt-8" set:html={bodyHtml} />
+    </div>
+  </section>
+</SiteShell>

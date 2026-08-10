@@ -1,0 +1,40 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { getReader } from '../lib/reader';
+import { markdocToHtml } from '../lib/markdoc';
+
+const reader = getReader();
+const pastor = await reader.singletons.pastor.read();
+if (!pastor) {
+  throw new Error('Pastor content is missing.');
+}
+
+const bioHtml = await markdocToHtml(pastor.bio);
+const photo = pastor.photo ? `/images/${pastor.photo}` : null;
+---
+
+<SiteShell title={pastor.pageTitle} description={`Meet ${pastor.name} at Wandin Baptist Church.`}>
+  <PageBanner title={pastor.pageTitle} />
+  <section class="py-14 md:py-16">
+    <div class="section-shell grid max-w-4xl gap-10 md:grid-cols-[280px_1fr] md:items-start">
+      {
+        photo && (
+          <img
+            src={photo}
+            alt={pastor.photoAlt || pastor.name}
+            class="mx-auto w-full max-w-xs rounded-full object-cover shadow-md md:max-w-none"
+            width="280"
+            height="280"
+          />
+        )
+      }
+      <div>
+        <h2 class="font-display text-2xl font-semibold text-eucalyptus-900 md:text-3xl">
+          {pastor.name}
+        </h2>
+        <div class="prose-church mt-6" set:html={bioHtml} />
+      </div>
+    </div>
+  </section>
+</SiteShell>

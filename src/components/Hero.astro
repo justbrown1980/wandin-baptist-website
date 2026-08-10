@@ -1,0 +1,75 @@
+---
+interface Props {
+  headline: string;
+  subline?: string;
+  image?: string | null;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  youtubeUrl?: string | null;
+  youtubeCtaLabel?: string;
+}
+
+const {
+  headline,
+  subline,
+  image,
+  primaryCtaLabel,
+  primaryCtaHref,
+  youtubeUrl,
+  youtubeCtaLabel,
+} = Astro.props;
+---
+
+<section class="relative isolate min-h-[100svh] overflow-hidden bg-eucalyptus-950 text-white">
+  {
+    image && (
+      <img
+        src={image}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover animate-[fade-in_1.2s_ease-out_both]"
+        fetchpriority="high"
+      />
+    )
+  }
+  <div class="absolute inset-0 bg-gradient-to-t from-eucalyptus-950 via-eucalyptus-950/70 to-eucalyptus-900/40"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(201,134,45,0.18),_transparent_40%)]"></div>
+
+  <div class="section-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-32 md:pb-24">
+    <div class="max-w-3xl animate-[fade-up_0.9s_ease-out_both]">
+      <h1 class="font-display text-5xl font-semibold tracking-tight text-balance sm:text-6xl md:text-7xl">
+        {headline}
+      </h1>
+      {
+        subline && (
+          <p class="mt-4 text-xl text-mist-100 md:text-2xl">{subline}</p>
+        )
+      }
+      <div class="mt-8 flex flex-wrap gap-3">
+        {
+          primaryCtaLabel && primaryCtaHref && (
+            <a href={primaryCtaHref} class="btn-primary">
+              {primaryCtaLabel}
+            </a>
+          )
+        }
+        {
+          youtubeUrl && (
+            <a
+              href={youtubeUrl}
+              class="btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/images/YouTube_full.svg"
+                alt=""
+                class="h-4 w-auto brightness-0 invert"
+              />
+              {youtubeCtaLabel || 'Find us on YouTube'}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

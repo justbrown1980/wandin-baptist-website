@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/our-beliefs.html", "destination": "/our-beliefs", "permanent": true },
+    { "source": "/wandin-baptist-history.html", "destination": "/wandin-baptist-history", "permanent": true },
+    { "source": "/meet-the-pastor.html", "destination": "/meet-the-pastor", "permanent": true },
+    { "source": "/contact-us.html", "destination": "/contact-us", "permanent": true },
+    { "source": "/safe-church.html", "destination": "/safe-church", "permanent": true },
+    { "source": "/child-safe-policy.html", "destination": "/child-safe-policy", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true }
+  ]
+}

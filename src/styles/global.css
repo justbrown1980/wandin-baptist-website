@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  --color-eucalyptus-950: #0c1f18;
+  --color-eucalyptus-900: #143528;
+  --color-eucalyptus-800: #1b4a37;
+  --color-eucalyptus-700: #245c45;
+  --color-eucalyptus-600: #2f7356;
+  --color-mist-50: #f4f7f5;
+  --color-mist-100: #e8efe9;
+  --color-mist-200: #d3ddd6;
+  --color-ink-900: #1a1f1c;
+  --color-ink-700: #3a423d;
+  --color-ink-500: #5f6b64;
+  --color-amber-500: #c9862d;
+  --color-amber-600: #a86c1f;
+  --color-amber-700: #875616;
+
+  --animate-fade-up: fade-up 0.8s ease-out both;
+  --animate-fade-in: fade-in 0.7s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-mist-50 font-sans text-ink-900 antialiased;
+  }
+
+  ::selection {
+    @apply bg-eucalyptus-700 text-white;
+  }
+}
+
+@layer components {
+  .prose-church {
+    @apply max-w-none text-base leading-relaxed text-ink-700 md:text-lg;
+
+    & h3,
+    & h4,
+    & h5 {
+      @apply mt-8 mb-3 font-display font-semibold text-eucalyptus-900;
+    }
+
+    & h3 {
+      @apply text-2xl md:text-3xl;
+    }
+
+    & h4 {
+      @apply text-xl md:text-2xl;
+    }
+
+    & h5 {
+      @apply text-lg md:text-xl;
+    }
+
+    & p {
+      @apply mb-4;
+    }
+
+    & ul {
+      @apply mb-4 list-disc space-y-2 pl-5;
+    }
+
+    & ol {
+      @apply mb-4 list-decimal space-y-2 pl-5;
+    }
+
+    & a {
+      @apply font-medium text-eucalyptus-700 underline decoration-eucalyptus-700/30 underline-offset-3 transition hover:text-eucalyptus-600 hover:decoration-eucalyptus-600;
+    }
+
+    & strong {
+      @apply font-semibold text-ink-900;
+    }
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-amber-500 text-white hover:bg-amber-600 focus-visible:outline-amber-500;
+  }
+
+  .btn-secondary {
+    @apply border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 focus-visible:outline-white;
+  }
+
+  .btn-outline {
+    @apply border border-eucalyptus-700/20 bg-white text-eucalyptus-800 hover:border-eucalyptus-700/40 hover:bg-mist-100 focus-visible:outline-eucalyptus-700;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-5xl px-5 md:px-8;
+  }
+
+  .page-banner {
+    @apply relative overflow-hidden bg-eucalyptus-900 py-16 text-white md:py-20;
+  }
+
+  .page-banner::before {
+    content: "";
+    @apply absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(47,115,86,0.45),_transparent_55%)];
+  }
+
+  .timeline-item {
+    @apply opacity-0 translate-y-4 transition duration-700 ease-out;
+  }
+
+  .timeline-item.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+}
