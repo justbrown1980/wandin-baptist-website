@@ -122,9 +122,9 @@
     @apply mx-auto w-full px-5 md:px-8;
   }
 
-  /* Readable measure for page body copy */
+  /* Readable measure for page body copy — left-aligned */
   .content-shell {
-    @apply mx-auto w-full max-w-prose px-5 md:px-8;
+    @apply mr-auto w-full max-w-prose px-5 md:px-8;
   }
 
   .page-banner {

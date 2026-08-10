@@ -1,7 +1,6 @@
 ---
 import SiteShell from '../components/SiteShell.astro';
 import PageBanner from '../components/PageBanner.astro';
-import Ministries from '../components/Ministries.astro';
 import { getMinistries } from '../lib/ministries';
 
 const ministries = await getMinistries();
@@ -13,12 +12,29 @@ const ministries = await getMinistries();
   showMinistries={false}
 >
   <PageBanner title="Ministries" />
-  <div class="bg-mist-50 py-10 md:py-12">
+  <section class="bg-white py-14 md:py-16">
     <div class="content-shell">
-      <p class="text-lg text-ink-700 md:text-xl">
+      <p class="mb-10 text-lg text-ink-700 md:text-xl">
         Ways to connect, grow, and serve together through the week.
       </p>
+
+      <ul class="space-y-8">
+        {
+          ministries.map((ministry) => (
+            <li class="border-t border-eucalyptus-900/10 pt-8 first:border-0 first:pt-0">
+              <h2 class="font-display text-xl font-semibold text-eucalyptus-900 md:text-2xl">
+                {ministry.title}
+              </h2>
+              {ministry.schedule && (
+                <p class="mt-2 text-sm font-medium tracking-wide text-amber-600">
+                  {ministry.schedule}
+                </p>
+              )}
+              <div class="prose-church mt-3" set:html={ministry.descriptionHtml} />
+            </li>
+          ))
+        }
+      </ul>
     </div>
-  </div>
-  <Ministries ministries={ministries} hideHeading />
+  </section>
 </SiteShell>
