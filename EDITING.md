@@ -87,7 +87,7 @@ Use these for whole pages or global settings:
 | --- | --- |
 | **Beliefs** | Each belief statement (list on `/our-beliefs`) |
 | **History Events** | Each timeline entry (list on `/wandin-baptist-history`) |
-| **Ministries** | Each ministry (shown at the bottom of every page) |
+| **Ministries** | Each ministry (shown on `/ministries`) |
 
 Click a sidebar item to open it and edit.
 
@@ -307,9 +307,9 @@ Each entry has:
 
 ### 7.3 Ministries
 
-**Public URLs:** `/ministries` and the Ministries section near the bottom of other pages.
+**Public URL:** `/ministries`
 
-Both use the same Keystatic **Ministries** collection — edit once, and both update after deploy.
+Edit the Keystatic **Ministries** collection — changes update that page after deploy.
 
 Each entry has:
 
@@ -326,7 +326,7 @@ Each entry has:
 2. Fill Title, Schedule, Order, Description.
 3. Save.
 
-Because ministries are shared, a change here updates `/ministries` and the section on other pages after deploy.
+A change here updates the `/ministries` page after deploy.
 
 ---
 

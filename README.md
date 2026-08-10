@@ -26,7 +26,7 @@ Editable in Keystatic under `src/content/`:
 | Singleton | Home / Pastor / Contact / Safe Church / Child Safe / Privacy | Page content |
 | Collection | Beliefs | Statement of faith items |
 | Collection | History Events | Timeline entries |
-| Collection | Ministries | `/ministries` page + shared section on other pages |
+| Collection | Ministries | `/ministries` page |
 
 - **Local mode** during `npm run dev` (writes to disk)
 - **GitHub mode** in production on Vercel (commits to the repo)
@@ -54,7 +54,7 @@ Legacy `*.html` URLs redirect to clean paths via `vercel.json`.
 ## QA checklist (cutover)
 
 - [ ] All routes render: `/`, `/our-beliefs`, `/wandin-baptist-history`, `/meet-the-pastor`, `/contact-us`, `/safe-church`, `/child-safe-policy`, `/privacy`
-- [ ] Ministries section appears on each page
+- [ ] Ministries page renders at `/ministries`
 - [ ] PDFs open from Safe Church links
 - [ ] Giving, YouTube, Maps, and OAIC privacy links work
 - [ ] Contact email shows `wandinbaptist@gmail.com` (no obfuscation script)

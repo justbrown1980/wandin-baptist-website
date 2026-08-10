@@ -2,24 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
-import Ministries from './Ministries.astro';
 import { getReader } from '../lib/reader';
-import { getMinistries } from '../lib/ministries';
 
 interface Props {
   title: string;
   description?: string;
-  showMinistries?: boolean;
 }
 
-const { title, description, showMinistries = true } = Astro.props;
+const { title, description } = Astro.props;
 const reader = getReader();
 const settings = await reader.singletons.siteSettings.read();
 if (!settings) {
   throw new Error('Site settings content is missing.');
 }
 
-const ministries = showMinistries ? await getMinistries() : [];
 const logo = settings.logo ? `/images/${settings.logo}` : null;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
@@ -34,7 +30,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   <main class="flex-1">
     <slot />
   </main>
-  {showMinistries && <Ministries ministries={ministries} />}
   <Footer
     churchName={settings.churchName}
     serviceTime={settings.serviceTime}
