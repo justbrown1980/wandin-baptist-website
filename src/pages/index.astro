@@ -44,23 +44,34 @@ const gallery = [
   />
 
   <section class="bg-mist-50 py-16 md:py-20">
-    <div class="section-shell grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
-      <div class="prose-church" set:html={introHtml} />
-      <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+    <div class="section-shell grid gap-8 md:grid-cols-2 md:items-start md:gap-10">
+      <div class="space-y-6">
+        <div class="prose-church" set:html={introHtml} />
         {
-          gallery.map((image, index) => (
-            <img
-              src={image.src!}
-              alt={image.alt}
-              class:list={[
-                'w-full rounded-sm object-cover shadow-sm',
-                index === 0 ? 'sm:col-span-2 md:col-span-1 aspect-[16/10]' : 'aspect-[4/3]',
-              ]}
-              loading={index === 0 ? 'eager' : 'lazy'}
-            />
-          ))
+          gallery.length > 1 && (
+            <div class="grid grid-cols-2 gap-3">
+              {gallery.slice(1).map((image) => (
+                <img
+                  src={image.src!}
+                  alt={image.alt}
+                  class="aspect-[4/3] w-full rounded-sm object-cover shadow-sm"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )
         }
       </div>
+      {
+        gallery[0] && (
+          <img
+            src={gallery[0].src!}
+            alt={gallery[0].alt}
+            class="aspect-[4/3] w-full rounded-sm object-cover shadow-sm md:aspect-auto md:h-full md:min-h-[22rem] md:object-cover"
+            loading="eager"
+          />
+        )
+      }
     </div>
   </section>
 </SiteShell>
