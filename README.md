@@ -35,7 +35,7 @@ Copy `.env.example` to `.env` for production GitHub auth values.
 
 ## Deploy on Vercel
 
-1. Push this repository to GitHub (e.g. `wandinbaptistchurch/wandinbaptistchurch.github.io`).
+1. This project lives at `justbrown1980/wandin-baptist-website` on GitHub.
 2. Import the repo in [Vercel](https://vercel.com). Framework preset: **Astro**. Build command `npm run build` (Node 22+).
 3. Add environment variables from `.env.example`:
    - `PUBLIC_KEYSTATIC_GITHUB_REPO`

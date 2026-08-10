@@ -2,7 +2,7 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 
 const githubRepo =
   import.meta.env.PUBLIC_KEYSTATIC_GITHUB_REPO ||
-  'wandinbaptistchurch/wandinbaptistchurch.github.io';
+  'justbrown1980/wandin-baptist-website';
 
 export default config({
   storage: import.meta.env.DEV
