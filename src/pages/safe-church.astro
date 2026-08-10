@@ -16,7 +16,7 @@ const bodyHtml = await markdocToHtml(page.body);
 <SiteShell title={page.pageTitle} description="Safe Church and Child Safe policies at Wandin Baptist Church.">
   <PageBanner title={page.pageTitle} />
   <section class="py-14 md:py-16">
-    <div class="section-shell max-w-3xl">
+    <div class="section-shell">
       <div class="prose-church" set:html={bodyHtml} />
       <ul class="mt-8 space-y-3">
         <li>
