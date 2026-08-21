@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import SiteShell from '../components/SiteShell.astro';
 import Hero from '../components/Hero.astro';
 import { getReader } from '../lib/reader';
@@ -51,11 +52,13 @@ const gallery = [
           gallery.length > 1 && (
             <div class="grid grid-cols-2 gap-3">
               {gallery.slice(1).map((image) => (
-                <img
+                <Image
                   src={image.src!}
                   alt={image.alt}
+                  width={1200}
+                  height={900}
                   class="aspect-[4/3] w-full rounded-sm object-cover shadow-sm"
-                  loading="lazy"
+                  loading="eager"
                 />
               ))}
             </div>
@@ -64,9 +67,11 @@ const gallery = [
       </div>
       {
         gallery[0] && (
-          <img
+          <Image
             src={gallery[0].src!}
             alt={gallery[0].alt}
+            width={1200}
+            height={900}
             class="aspect-[4/3] w-full rounded-sm object-cover shadow-sm md:aspect-auto md:h-full md:min-h-[22rem] md:object-cover"
             loading="eager"
           />

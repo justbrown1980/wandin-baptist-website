@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import YouTubeIcon from '../assets/YouTube_full.svg';
+
 interface Props {
   headline: string;
   subline?: string;
@@ -23,10 +26,13 @@ const {
 <section class="relative isolate h-[50vh] max-h-[50vh] overflow-hidden bg-eucalyptus-950 text-white">
   {
     image && (
-      <img
+      <Image
         src={image}
         alt=""
+        width={1688}
+        height={577}
         class="absolute inset-0 h-full w-full object-cover animate-[fade-in_1.2s_ease-out_both]"
+        loading="eager"
         fetchpriority="high"
       />
     )
@@ -60,12 +66,11 @@ const {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src="/images/YouTube_full.svg"
-                alt=""
+              <YouTubeIcon
                 width="24"
                 height="17"
                 class="h-4 w-auto shrink-0"
+                aria-hidden="true"
               />
               {youtubeCtaLabel || 'Find us on YouTube'}
             </a>
