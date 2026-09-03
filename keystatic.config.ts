@@ -38,7 +38,6 @@ export default config({
         logo: fields.image({
           label: 'Logo',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
       },
     }),
@@ -55,24 +54,20 @@ export default config({
         heroImage: fields.image({
           label: 'Hero image',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
         galleryImage1: fields.image({
           label: 'Gallery image 1',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
         galleryImage1Alt: fields.text({ label: 'Gallery image 1 alt' }),
         galleryImage2: fields.image({
           label: 'Gallery image 2',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
         galleryImage2Alt: fields.text({ label: 'Gallery image 2 alt' }),
         galleryImage3: fields.image({
           label: 'Gallery image 3',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
         galleryImage3Alt: fields.text({ label: 'Gallery image 3 alt' }),
         intro: fields.markdoc({ label: 'Intro content' }),
@@ -88,7 +83,6 @@ export default config({
         photo: fields.image({
           label: 'Photo',
           directory: 'public/images',
-          publicPath: '/images/',
         }),
         photoAlt: fields.text({ label: 'Photo alt text' }),
         bio: fields.markdoc({ label: 'Biography' }),
@@ -114,14 +108,12 @@ export default config({
           label: 'Policy PDF',
           description: 'Upload or replace the Safe Church and Child Safe Policy PDF.',
           directory: 'public/documents',
-          publicPath: '/documents/',
         }),
         procedurePdfLabel: fields.text({ label: 'Procedure PDF label' }),
         procedurePdf: fields.file({
           label: 'Procedure PDF',
           description: 'Upload or replace the Safe Church and Child Safe Procedures PDF.',
           directory: 'public/documents',
-          publicPath: '/documents/',
         }),
         body: fields.markdoc({ label: 'Body' }),
       },
